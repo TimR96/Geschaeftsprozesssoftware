@@ -1,0 +1,77 @@
+drop database if exists dbfriseurriexinger;
+create database dbfriseurriexinger;
+
+create table dbfriseurriexinger.Kassenbestand (
+KassenbestandID int not null auto_increment,
+Kassenbestand float,
+primary key (KassenbestandID)
+);
+
+create table dbfriseurriexinger.Mitarbeiter (
+MitarbeiterID int not null auto_increment,
+Nachname varchar(255),
+Vorname varchar(255),
+RFID_Code varchar(10),
+Aktiv int,
+primary key (MitarbeiterID)
+);
+
+create table dbfriseurriexinger.Zahlungsarten (
+ZahlungsartenID int not null auto_increment,
+Zahlungsart varchar(50),
+Aktiv int,
+primary key (ZahlungsartenID)
+);
+
+create table dbfriseurriexinger.Kategorien (
+KategorienID int not null auto_increment,
+Kategorie varchar(50),
+Aktiv int,
+primary key (KategorienID)
+);
+
+create table dbfriseurriexinger.Zeiterfassungsarten (
+ZeiterfassungsartenID int not null auto_increment,
+Zeiterfassungsart varchar(20),
+primary key (ZeiterfassungsartenID)
+);
+
+create table dbfriseurriexinger.Zeiterfassungen (
+ZeiterfassungenID int not null auto_increment,
+Datum varchar(10),
+Uhrzeit varchar(5),
+MitarbeiterID int,
+ZeiterfassungsartenID int,
+primary key (ZeiterfassungenID),
+foreign key (MitarbeiterID) references Mitarbeiter(MitarbeiterID),
+foreign key (ZeiterfassungsartenID) references Zeiterfassungsarten(ZeiterfassungsartenID)
+);
+
+create table dbfriseurriexinger.Abrechnungen (
+AbrechnungenID int not null auto_increment,
+Bezeichnung varchar(255),
+Betrag float,
+Zeitstempel datetime,
+MitarbeiterID int,
+ZahlungsartenID int,
+KategorienID int,
+primary key (AbrechnungenID),
+foreign key (MitarbeiterID) references Mitarbeiter(MitarbeiterID),
+foreign key (ZahlungsartenID) references Zahlungsarten(ZahlungsartenID),
+foreign key (KategorienID) references Kategorien(KategorienID)
+);
+
+insert into dbfriseurriexinger.Zeiterfassungsarten (ZeiterfassungsartenID, Zeiterfassungsart) values (1, "Kommen");
+insert into dbfriseurriexinger.Zeiterfassungsarten (ZeiterfassungsartenID, Zeiterfassungsart) values (2, "Gehen");
+
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (1, "Herren", 1);
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (2, "Damen", 1);
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (3, "Kinder", 1);
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (4, "Produkte", 1);
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (5, "sonstige", 1);
+insert into dbfriseurriexinger.Kategorien (KategorienID, Kategorie, Aktiv) values (6, "Ausgabe", 1);
+
+insert into dbfriseurriexinger.Zahlungsarten (ZahlungsartenID, Zahlungsart, Aktiv) values (1, "Bar", 1);
+insert into dbfriseurriexinger.Zahlungsarten (ZahlungsartenID, Zahlungsart, Aktiv) values (2, "EC", 1);
+
+insert into dbfriseurriexinger.Kassenbestand (KassenbestandID) values (1);
