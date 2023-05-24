@@ -1,4 +1,4 @@
-Geschäftsprozesssoftware, mit der verkaufte Dienstleistungen und Produkte in einer Datenbank gespeichert werden können.
+Geschäftsprozesssoftware für einen Friseursalon, mit der verkaufte Dienstleistungen und Produkte in einer Datenbank gespeichert werden können.
 Diesen wird ein Betrag, eine Zahlungsart, eine Kategorie und ein Mitarbeiter zugeweisen. Die Kategorien und Zahlungsarten
 können vom Anwender geändert werden. 
 Der Bargeldbestand der Kasse wird getrackt. Er kann manuell angepasst werden.
